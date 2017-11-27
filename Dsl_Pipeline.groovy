@@ -1,4 +1,7 @@
-folder name('HPSIM')
+folder name('HPSIM'){
+displayName('HPSIM-NEW')
+    description('Folder for pHPSIM-NEW')
+}
 
 freeStyleJob('HPSIM/compile') {
     logRotator(-1, 10)
