@@ -1,4 +1,6 @@
-freeStyleJob('project-hpsim/compile') {
+folder name('HPSIM')
+
+freeStyleJob('HPSIM/compile') {
     logRotator(-1, 10)
     
     scm {
@@ -7,14 +9,14 @@ freeStyleJob('project-hpsim/compile') {
     steps {
         maven ('clean compile')
   publishers {
-  downstream ('project-hpsim/test' , 'SUCCESS')
+  downstream ('HPSIM/test' , 'SUCCESS')
  // downstream 'next-job-name2' , 'SUCCESS'
  }
     }
     
 }
 
-mavenJob('project-hpsim/test') {
+mavenJob('HPSIM/test') {
     logRotator(-1, 10)
    
     scm {
@@ -24,12 +26,12 @@ mavenJob('project-hpsim/test') {
     goals('clean test')
   
   publishers {
-  downstream ('project-hpsim/sonar' , 'SUCCESS')
+  downstream ('HPSIM/sonar' , 'SUCCESS')
  // downstream 'next-job-name2' , 'SUCCESS'
  }
 }
 
-mavenJob('project-hpsim/sonar') {
+mavenJob('HPSIM/sonar') {
     logRotator(-1, 10)
    
     scm {
@@ -39,11 +41,11 @@ mavenJob('project-hpsim/sonar') {
   
     goals('clean sonar:sonar')
   publishers {
-  downstream ('project-hpsim/nexus' , 'SUCCESS')
+  downstream ('HPSIM/nexus' , 'SUCCESS')
  // downstream 'next-job-name2' , 'SUCCESS'
  }
 }
-mavenJob('project-hpsim/nexus') {
+mavenJob('HPSIM/nexus') {
     logRotator(-1, 10)
    
     scm {
@@ -54,12 +56,12 @@ mavenJob('project-hpsim/nexus') {
     goals('clean deploy')
  
  }
-buildPipelineView('project-hpsim/Buildpipeline') {
+buildPipelineView('HPSIM/Buildpipeline-new') {
     filterBuildQueue()
     filterExecutors()
     title('Project A CI Pipeline')
     displayedBuilds(5)
-    selectedJob('project-hpsim/compile')
+    selectedJob('HPSIM/compile')
     alwaysAllowManualTrigger()
     showPipelineParameters()
     refreshFrequency(60)
