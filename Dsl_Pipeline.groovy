@@ -1,4 +1,4 @@
-folder name('HPSIM'){
+folder('HPSIM'){
 displayName('HPSIM-NEW')
     description('Folder for pHPSIM-NEW')
 }
